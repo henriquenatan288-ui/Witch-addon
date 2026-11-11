@@ -24,6 +24,11 @@ jobs:
             grep -A2 -E "error:|FAILED|What went wrong" build.log | head -60 | while IFS= read -r l; do echo "::error::${l}"; done
           fi
           exit $code
+      - name: Artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: witch-addon-26.2
+          path: build/libs/*.jar
       - name: Release
         if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
