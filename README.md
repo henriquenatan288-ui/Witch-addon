@@ -2,7 +2,7 @@
 
 Modulos extras do Witch Client como addon do [Meteor Client](https://meteorclient.com). Autor: Bisteck.
 
-Alvo: Minecraft **26.3** e Meteor `26.3-SNAPSHOT` (o que o template oficial e o Meteor usam hoje). Para outra versao, mude `minecraft` e `meteor` em `gradle/libs.versions.toml`.
+Alvo: Minecraft **26.2** e Meteor `26.2-SNAPSHOT` (a branch `mc-26.3` mira o 26.3). Para outra versao, mude `minecraft` e `meteor` em `gradle/libs.versions.toml`.
 
 ## Modulos (categoria "Witch")
 - Movimento: fast-fall, glide, low-gravity, wall-jump, air-brake, pogo, hover, levitate
