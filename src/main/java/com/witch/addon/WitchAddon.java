@@ -1,0 +1,47 @@
+package com.witch.addon;
+
+import com.witch.addon.modules.*;
+import com.mojang.logging.LogUtils;
+import meteordevelopment.meteorclient.addons.GithubRepo;
+import meteordevelopment.meteorclient.addons.MeteorAddon;
+import meteordevelopment.meteorclient.systems.modules.Category;
+import meteordevelopment.meteorclient.systems.modules.Modules;
+import org.slf4j.Logger;
+
+public class WitchAddon extends MeteorAddon {
+    public static final Logger LOG = LogUtils.getLogger();
+    public static final Category CATEGORY = new Category("Witch");
+
+    @Override
+    public void onInitialize() {
+        LOG.info("Witch Addon carregando");
+        Modules m = Modules.get();
+        m.add(new FastFall());
+        m.add(new Glide());
+        m.add(new LowGravity());
+        m.add(new WallJump());
+        m.add(new AirBrake());
+        m.add(new Pogo());
+        m.add(new YawLock());
+        m.add(new PitchLock());
+        m.add(new LowHealthAlert());
+        m.add(new ArmorWarning());
+        m.add(new FarmEsp());
+        m.add(new ChunkBorders());
+    }
+
+    @Override
+    public void onRegisterCategories() {
+        Modules.registerCategory(CATEGORY);
+    }
+
+    @Override
+    public String getPackage() {
+        return "com.witch.addon";
+    }
+
+    @Override
+    public GithubRepo getRepo() {
+        return new GithubRepo("henriquenatan288-ui", "Witch-Addon");
+    }
+}
