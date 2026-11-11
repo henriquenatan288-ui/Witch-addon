@@ -63,7 +63,7 @@ public class IntroScreen extends Screen {
     private void finish() {
         if (done) return;
         done = true;
-        Minecraft.getInstance().setScreen(next);
+        Minecraft.getInstance().gui.setScreen(next);
     }
 
     @Override

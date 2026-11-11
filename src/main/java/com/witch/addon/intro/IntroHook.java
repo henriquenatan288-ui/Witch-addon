@@ -16,6 +16,6 @@ public class IntroHook {
         played = true;
         TitleScreen title = (TitleScreen) e.screen;
         e.setCancelled(true);
-        mc.execute(() -> mc.setScreen(new IntroScreen(title)));
+        mc.execute(() -> mc.gui.setScreen(new IntroScreen(title)));
     }
 }
