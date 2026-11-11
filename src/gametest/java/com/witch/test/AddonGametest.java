@@ -8,12 +8,15 @@ import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 public class AddonGametest implements FabricClientGameTest {
     @Override
     public void runTest(ClientGameTestContext context) {
-        // animacao de entrada (a primeira vez que o menu abre)
-        for (int i = 1; i <= 8; i++) {
-            context.waitTicks(15);
-            context.takeScreenshot("a" + i + "-intro");
+        context.waitTicks(40);
+        context.takeScreenshot("a0-title");
+        // animacao de entrada, chamada de forma deterministica
+        context.runOnClient(mc -> TestHooks.playIntro());
+        for (int i = 1; i <= 14; i++) {
+            context.waitTicks(4);
+            context.takeScreenshot("a" + (i < 10 ? "0" : "") + i + "-intro");
         }
-        context.waitTicks(60);
+        context.waitTicks(40);
         context.takeScreenshot("b-title");
 
         // Meteor GUI com caixas novas
@@ -34,6 +37,15 @@ public class AddonGametest implements FabricClientGameTest {
             });
             context.waitTicks(40);
             context.takeScreenshot("d-world-hud");
+            context.runOnClient(mc -> {
+                TestHooks.toggle("toggle-sneak");
+                TestHooks.toggle("spinner");
+                TestHooks.toggle("hotbar-cycle");
+                TestHooks.toggle("glide");
+                TestHooks.toggle("pitch-lock");
+            });
+            context.waitTicks(60);
+            context.takeScreenshot("f-newmods");
             context.runOnClient(mc -> TestHooks.openMeteorGui());
             context.waitTicks(40);
             context.takeScreenshot("e-gui-in-world");

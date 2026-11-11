@@ -13,6 +13,11 @@ public final class TestHooks {
         Tabs.get().get(0).openScreen(GuiThemes.get());
     }
 
+    public static void playIntro() {
+        var mc = net.minecraft.client.Minecraft.getInstance();
+        mc.gui.setScreen(new com.witch.addon.intro.IntroScreen(mc.gui.screen()));
+    }
+
     public static void toggle(String name) {
         Module m = Modules.get().get(name);
         if (m != null && !m.isActive()) m.toggle();
