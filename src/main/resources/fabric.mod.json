@@ -13,6 +13,7 @@
   "entrypoints": {
     "meteor": ["com.witch.addon.WitchAddon"]
   },
+  "mixins": ["witch-addon.mixins.json"],
   "custom": {
     "meteor-client:color": "47,123,255",
     "modmenu": { "parent": { "id": "meteor-client" } }

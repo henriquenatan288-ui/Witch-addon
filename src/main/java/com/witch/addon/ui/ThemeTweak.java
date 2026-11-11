@@ -22,6 +22,11 @@ public class ThemeTweak {
         t.backgroundColor.get().set(0, 0, 0, ALPHA);
         t.backgroundColor.get(false, true, true).set(0, 0, 0, ALPHA);
         t.backgroundColor.get(true, true, true).set(0, 0, 0, ALPHA);
+        // caixas brancas: texto escuro e modulo ativo em azul claro (se voce nao mexeu nas cores padrao)
+        var tx = t.textColor.get();
+        if (tx.r == 255 && tx.g == 255 && tx.b == 255) tx.set(15, 25, 60, 255);
+        var mb = t.moduleBackground.get();
+        if (mb.r == 50 && mb.g == 50 && mb.b == 50) mb.set(190, 214, 255, 255);
         // destaque: troca o roxo padrao do Meteor pelo azul do Witch (se voce ja escolheu outra cor, respeita)
         var acc = t.accentColor.get();
         if (acc.r == 145 && acc.g == 61 && acc.b == 226) acc.set(47, 123, 255, 255);

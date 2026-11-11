@@ -1,0 +1,13 @@
+{
+  "required": false,
+  "package": "com.witch.addon.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "WindowMixin",
+    "HeaderMixin",
+    "HandItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}
