@@ -91,7 +91,7 @@ public class IntroScreen extends Screen {
         long now = System.currentTimeMillis();
         if (last < 0) last = now;
         // enquanto a tela de carregamento do jogo cobre tudo, a animacao espera (senao ela passa escondida)
-        if (Minecraft.getInstance().getOverlay() != null) {
+        if (Minecraft.getInstance().gui.overlay() != null) {
             last = now;
             g.fill(0, 0, width, height, 0xFF000000);
             return;
