@@ -29,6 +29,7 @@ dependencies {
 
     // Meteor
     implementation(libs.meteor.client)
+    implementation("net.fabricmc.fabric-api:fabric-api:0.152.2+26.2")
 }
 
 java {
@@ -88,5 +89,15 @@ tasks {
                 "-Xlint:unchecked"
             )
         )
+    }
+}
+
+fabricApi {
+    configureTests {
+        createSourceSet = true
+        modId = "witch-gametest"
+        enableGameTests = false
+        enableClientGameTests = true
+        eula = true
     }
 }
