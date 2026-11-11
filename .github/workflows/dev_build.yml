@@ -14,7 +14,16 @@ jobs:
         with:
           distribution: temurin
           java-version: 25
-      - run: chmod +x gradlew && ./gradlew build
+      - name: Build
+        run: |
+          chmod +x gradlew
+          set +e
+          ./gradlew build --console=plain > build.log 2>&1
+          code=$?
+          if [ $code -ne 0 ]; then
+            grep -A2 -E "error:|FAILED|What went wrong" build.log | head -60 | while IFS= read -r l; do echo "::error::${l}"; done
+          fi
+          exit $code
       - name: Release
         if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2

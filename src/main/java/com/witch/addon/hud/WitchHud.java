@@ -6,6 +6,8 @@ import meteordevelopment.meteorclient.systems.hud.HudElementInfo;
 import meteordevelopment.meteorclient.systems.hud.HudRenderer;
 import meteordevelopment.meteorclient.utils.render.color.Color;
 
+import net.minecraft.world.level.Level;
+
 import java.util.function.Supplier;
 
 import static meteordevelopment.meteorclient.MeteorClient.mc;
@@ -16,15 +18,15 @@ public class WitchHud extends HudElement {
     private static final Color FG = new Color(235, 242, 255, 255);
 
     public static final HudElementInfo<WitchHud> WATERMARK = new HudElementInfo<>(WitchAddon.HUD_GROUP, "witch-watermark",
-        "Marca do Witch.", () -> new WitchHud(WATERMARK, () -> "Witch Addon"));
+        "Marca do Witch.", () -> new WitchHud(WitchHud.WATERMARK, () -> "Witch Addon"));
     public static final HudElementInfo<WitchHud> DAY = new HudElementInfo<>(WitchAddon.HUD_GROUP, "day-counter",
-        "Dia do mundo.", () -> new WitchHud(DAY, () -> mc.level == null ? "Dia -" : "Dia " + (mc.level.getDayTime() / 24000L)));
+        "Dia do mundo.", () -> new WitchHud(WitchHud.DAY, () -> mc.level == null ? "Dia -" : "Dia " + (mc.level.getGameTime() / 24000L)));
     public static final HudElementInfo<WitchHud> DIRECTION = new HudElementInfo<>(WitchAddon.HUD_GROUP, "direction",
-        "Direcao que voce olha.", () -> new WitchHud(DIRECTION, () -> mc.player == null ? "-" : mc.player.getDirection().getName()));
+        "Direcao que voce olha.", () -> new WitchHud(WitchHud.DIRECTION, () -> mc.player == null ? "-" : mc.player.getDirection().toString()));
     public static final HudElementInfo<WitchHud> NETHER = new HudElementInfo<>(WitchAddon.HUD_GROUP, "nether-coords",
-        "Coordenadas convertidas Overworld/Nether.", () -> new WitchHud(NETHER, () -> {
+        "Coordenadas convertidas Overworld/Nether.", () -> new WitchHud(WitchHud.NETHER, () -> {
             if (mc.player == null) return "-";
-            boolean nether = mc.level != null && mc.level.dimension().toString().contains("the_nether");
+            boolean nether = mc.level != null && mc.level.dimension() == Level.NETHER;
             double k = nether ? 8.0 : 1.0 / 8.0;
             return String.format("%s: %d %d", nether ? "Overworld" : "Nether", (int) (mc.player.getX() * k), (int) (mc.player.getZ() * k));
         }));
