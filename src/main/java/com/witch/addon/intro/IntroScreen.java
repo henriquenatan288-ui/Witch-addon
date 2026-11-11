@@ -24,7 +24,8 @@ public class IntroScreen extends Screen {
     private static final boolean[][] W_CELLS = buildW();
 
     private final Screen next;
-    private long start = -1;
+    private long last = -1;
+    private double clock;   // ms de animacao; avanca no maximo 50 ms por quadro (aguenta quedas de FPS)
     private boolean done;
     private boolean batSound;
 
@@ -88,8 +89,16 @@ public class IntroScreen extends Screen {
     @Override
     public void extractRenderState(GuiGraphicsExtractor g, int mx, int my, float delta) {
         long now = System.currentTimeMillis();
-        if (start < 0) start = now;
-        long t = now - start;
+        if (last < 0) last = now;
+        // enquanto a tela de carregamento do jogo cobre tudo, a animacao espera (senao ela passa escondida)
+        if (Minecraft.getInstance().getOverlay() != null) {
+            last = now;
+            g.fill(0, 0, width, height, 0xFF000000);
+            return;
+        }
+        clock += Math.min(now - last, 50);
+        last = now;
+        long t = (long) clock;
         if (t >= END) {
             finish();
             return;
