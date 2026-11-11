@@ -43,12 +43,17 @@ public class WitchAddon extends MeteorAddon {
         m.add(new Levitate());
         m.add(new Intro());
         m.add(new HeldItemGlow());
+        m.add(new ToggleSneak());
+        m.add(new Spinner());
+        m.add(new HotbarCycle());
 
         Hud hud = Hud.get();
         hud.register(WitchHud.WATERMARK);
         hud.register(WitchHud.DAY);
         hud.register(WitchHud.DIRECTION);
         hud.register(WitchHud.NETHER);
+        hud.register(WitchHud.SPEED);
+        hud.register(WitchHud.CLOCK);
     }
 
     @Override

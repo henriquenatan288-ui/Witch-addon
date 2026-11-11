@@ -5,8 +5,8 @@ import meteordevelopment.meteorclient.utils.render.color.Color;
 
 /** Retangulos de cantos arredondados feitos com linhas de quad (o renderer do Meteor so tem quad reto). */
 public final class Round {
-    public static final Color BLUE = new Color(47, 123, 255, 255);
-    public static final Color WHITE = new Color(255, 255, 255, 240);
+    public static final Color BLUE = new Color(96, 146, 232, 255);
+    public static final Color WHITE = new Color(238, 242, 249, 232);
 
     private Round() {}
 
@@ -27,6 +27,6 @@ public final class Round {
     /** Caixa branca com contorno azul e cantos redondos. */
     public static void box(GuiRenderer r, double x, double y, double w, double h) {
         rect(r, x, y, w, h, 7, BLUE, true, true);
-        rect(r, x + 2, y + 2, w - 4, h - 4, 5, WHITE, true, true);
+        rect(r, x + 1, y + 1, w - 2, h - 2, 6, WHITE, true, true);
     }
 }

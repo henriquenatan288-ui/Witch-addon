@@ -18,7 +18,7 @@ public abstract class HeaderMixin {
     private void witch$render(GuiRenderer renderer, double mouseX, double mouseY, double delta, CallbackInfo ci) {
         WWidget w = (WWidget) (Object) this;
         Color c = GuiThemes.get() instanceof MeteorGuiTheme t ? t.accentColor.get() : Round.BLUE;
-        Round.rect(renderer, w.x + 2, w.y + 2, w.width - 4, w.height - 2, 5, c, true, false);
+        Round.rect(renderer, w.x + 1, w.y + 1, w.width - 2, w.height - 1, 6, c, true, false);
         ci.cancel();
     }
 }

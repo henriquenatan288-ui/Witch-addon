@@ -20,36 +20,17 @@ public class HeldItemGlow extends Module {
         .name("spread").description("Tamanho do brilho em pixels.").defaultValue(5).range(2, 12).sliderRange(2, 12).build());
     private final Setting<Boolean> pulse = sg.add(new BoolSetting.Builder()
         .name("pulse").description("Brilho que pulsa.").defaultValue(true).build());
-    private final Setting<Boolean> handOutline = sg.add(new BoolSetting.Builder()
-        .name("hand-outline").description("Contorno brilhante no item 3D da mao (experimental).").defaultValue(true).build());
-    private final Setting<Boolean> hotbar = sg.add(new BoolSetting.Builder()
-        .name("hotbar-glow").description("Brilho retangular no slot da hotbar.").defaultValue(false).build());
     private final Setting<Boolean> offhand = sg.add(new BoolSetting.Builder()
         .name("offhand").description("Tambem na mao secundaria.").defaultValue(true).build());
 
-    private static HeldItemGlow instance;
-
-    /** Cor ARGB do contorno do item na mao (0 = desligado). Usado pelo mixin. */
-    public static int handOutline() {
-        HeldItemGlow m = instance;
-        if (m == null || !m.isActive() || !m.handOutline.get()) return 0;
-        SettingColor c = m.color.get();
-        double k = m.pulse.get() ? 0.5 + 0.5 * Math.sin(System.currentTimeMillis() / 260.0) : 0.0;
-        int r = (int) Math.round(c.r + (255 - c.r) * k * 0.5);
-        int g = (int) Math.round(c.g + (255 - c.g) * k * 0.5);
-        int b = (int) Math.round(c.b + (255 - c.b) * k * 0.5);
-        return 0xFF000000 | (r << 16) | (g << 8) | b;
-    }
-
     public HeldItemGlow() {
-        super(WitchAddon.CATEGORY, "held-item-glow", "Contorno brilhante no item que voce segura.");
-        instance = this;
+        super(WitchAddon.CATEGORY, "held-item-glow", "Brilho em volta do item que voce segura (slot da hotbar).");
     }
 
     @EventHandler
     private void onRender2D(Render2DEvent e) {
         var p = mc.player;
-        if (p == null || !hotbar.get()) return;
+        if (p == null) return;
         int cx = e.screenWidth / 2;
         int y = e.screenHeight - 19;
         double k = pulse.get() ? 0.65 + 0.35 * Math.sin(System.currentTimeMillis() / 260.0) : 1.0;

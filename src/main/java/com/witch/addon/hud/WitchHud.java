@@ -31,6 +31,16 @@ public class WitchHud extends HudElement {
             return String.format("%s: %d %d", nether ? "Overworld" : "Nether", (int) (mc.player.getX() * k), (int) (mc.player.getZ() * k));
         }));
 
+    public static final HudElementInfo<WitchHud> SPEED = new HudElementInfo<>(WitchAddon.HUD_GROUP, "speed",
+        "Velocidade horizontal em blocos por segundo.", () -> new WitchHud(WitchHud.SPEED, () -> {
+            if (mc.player == null) return "-";
+            var v = mc.player.getDeltaMovement();
+            return String.format("%.1f b/s", Math.hypot(v.x, v.z) * 20.0);
+        }));
+    public static final HudElementInfo<WitchHud> CLOCK = new HudElementInfo<>(WitchAddon.HUD_GROUP, "clock",
+        "Hora real (HH:mm).", () -> new WitchHud(WitchHud.CLOCK, () ->
+            java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"))));
+
     private final Supplier<String> text;
 
     public WitchHud(HudElementInfo<WitchHud> info, Supplier<String> text) {
