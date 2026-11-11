@@ -5,9 +5,10 @@ Modulos extras do Witch Client como addon do [Meteor Client](https://meteorclien
 Alvo: Minecraft **26.3** e Meteor `26.3-SNAPSHOT` (o que o template oficial e o Meteor usam hoje). Para outra versao, mude `minecraft` e `meteor` em `gradle/libs.versions.toml`.
 
 ## Modulos (categoria "Witch")
-- Movimento: fast-fall, glide, low-gravity, wall-jump, air-brake, pogo
+- Movimento: fast-fall, glide, low-gravity, wall-jump, air-brake, pogo, hover, levitate
 - Utilidade: yaw-lock, pitch-lock, low-health-alert, armor-warning
-- Visual: farm-esp, chunk-borders
+- Visual: farm-esp, ancient-finder, chunk-borders, jump-circles
+- HUD (grupo "Witch"): witch-watermark, day-counter, direction, nether-coords
 
 ## Instalar
 Baixe o `.jar` em Releases (build `snapshot`) e coloque em `mods/`, junto com o Meteor da mesma versao.

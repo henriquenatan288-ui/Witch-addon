@@ -1,9 +1,12 @@
 package com.witch.addon;
 
+import com.witch.addon.hud.WitchHud;
 import com.witch.addon.modules.*;
 import com.mojang.logging.LogUtils;
 import meteordevelopment.meteorclient.addons.GithubRepo;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
+import meteordevelopment.meteorclient.systems.hud.Hud;
+import meteordevelopment.meteorclient.systems.hud.HudGroup;
 import meteordevelopment.meteorclient.systems.modules.Category;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import org.slf4j.Logger;
@@ -11,6 +14,7 @@ import org.slf4j.Logger;
 public class WitchAddon extends MeteorAddon {
     public static final Logger LOG = LogUtils.getLogger();
     public static final Category CATEGORY = new Category("Witch");
+    public static final HudGroup HUD_GROUP = new HudGroup("Witch");
 
     @Override
     public void onInitialize() {
@@ -28,6 +32,16 @@ public class WitchAddon extends MeteorAddon {
         m.add(new ArmorWarning());
         m.add(new FarmEsp());
         m.add(new ChunkBorders());
+        m.add(new AncientFinder());
+        m.add(new JumpCircles());
+        m.add(new Hover());
+        m.add(new Levitate());
+
+        Hud hud = Hud.get();
+        hud.register(WitchHud.WATERMARK);
+        hud.register(WitchHud.DAY);
+        hud.register(WitchHud.DIRECTION);
+        hud.register(WitchHud.NETHER);
     }
 
     @Override
