@@ -30,7 +30,7 @@ public class HeldItemGlow extends Module {
     @EventHandler
     private void onRender2D(Render2DEvent e) {
         var p = mc.player;
-        if (p == null || mc.options.hideGui) return;
+        if (p == null) return;
         int cx = e.screenWidth / 2;
         int y = e.screenHeight - 19;
         double k = pulse.get() ? 0.65 + 0.35 * Math.sin(System.currentTimeMillis() / 260.0) : 1.0;
