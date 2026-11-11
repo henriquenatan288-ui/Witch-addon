@@ -7,7 +7,7 @@ Alvo: Minecraft **26.2** e Meteor `26.2-SNAPSHOT` (a branch `mc-26.3` mira o 26.
 ## Modulos (categoria "Witch")
 - Movimento: fast-fall, glide, low-gravity, wall-jump, air-brake, pogo, hover, levitate
 - Utilidade: yaw-lock, pitch-lock, low-health-alert, armor-warning
-- Visual: farm-esp, ancient-finder, chunk-borders, jump-circles
+- Visual: farm-esp, ancient-finder, chunk-borders, jump-circles, held-item-glow
 - Animacao de entrada: W branco gira, e arrastado ao canto e solta 2 morcegos (toque/clique pula) O modulo `intro` toca de novo sem reiniciar
 - HUD (grupo "Witch"): witch-watermark, day-counter, direction, nether-coords
 
