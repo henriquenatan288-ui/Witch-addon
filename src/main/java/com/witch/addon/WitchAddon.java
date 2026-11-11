@@ -41,6 +41,7 @@ public class WitchAddon extends MeteorAddon {
         m.add(new JumpCircles());
         m.add(new Hover());
         m.add(new Levitate());
+        m.add(new Intro());
 
         Hud hud = Hud.get();
         hud.register(WitchHud.WATERMARK);

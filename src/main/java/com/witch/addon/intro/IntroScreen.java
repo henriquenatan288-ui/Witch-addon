@@ -4,6 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -24,6 +26,7 @@ public class IntroScreen extends Screen {
     private final Screen next;
     private long start = -1;
     private boolean done;
+    private boolean batSound;
 
     public IntroScreen(Screen next) {
         super(Component.literal("Witch"));
@@ -126,6 +129,10 @@ public class IntroScreen extends Screen {
 
         // morcegos: saem do W quando ele chega ao canto
         if (t >= MOVE_END - 150) {
+            if (!batSound) {
+                batSound = true;
+                Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.BAT_TAKEOFF, 1.0f, 1.0f));
+            }
             double bt = (t - (MOVE_END - 150)) / (double) (BAT_END - MOVE_END + 150);
             drawBat(g, cx, cy, bt, 0, t);
             drawBat(g, cx, cy, Math.max(0, bt - 0.12), 1, t);
