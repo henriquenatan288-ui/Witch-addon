@@ -1,7 +1,9 @@
 package com.witch.addon;
 
 import com.witch.addon.hud.WitchHud;
+import com.witch.addon.intro.IntroHook;
 import com.witch.addon.modules.*;
+import meteordevelopment.meteorclient.MeteorClient;
 import com.mojang.logging.LogUtils;
 import meteordevelopment.meteorclient.addons.GithubRepo;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
@@ -19,6 +21,7 @@ public class WitchAddon extends MeteorAddon {
     @Override
     public void onInitialize() {
         LOG.info("Witch Addon carregando");
+        MeteorClient.EVENT_BUS.subscribe(new IntroHook());
         Modules m = Modules.get();
         m.add(new FastFall());
         m.add(new Glide());
