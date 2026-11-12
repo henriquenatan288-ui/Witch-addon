@@ -18,6 +18,23 @@ public final class TestHooks {
         mc.gui.setScreen(new com.witch.addon.intro.IntroScreen(mc.gui.screen()));
     }
 
+    public static void attackZombie() {
+        var mc = net.minecraft.client.Minecraft.getInstance();
+        for (var e : mc.level.entitiesForRendering()) {
+            if (e instanceof net.minecraft.world.entity.monster.zombie.Zombie z) {
+                meteordevelopment.meteorclient.MeteorClient.EVENT_BUS.post(
+                    meteordevelopment.meteorclient.events.entity.player.AttackEntityEvent.get(z));
+                return;
+            }
+        }
+        WitchAddon.LOG.info("TEST attack: zumbi nao achado");
+    }
+
+    public static void respawn() {
+        var mc = net.minecraft.client.Minecraft.getInstance();
+        if (mc.player != null) mc.player.respawn();
+    }
+
     public static void toggle(String name) {
         Module m = Modules.get().get(name);
         if (m != null && !m.isActive()) m.toggle();
