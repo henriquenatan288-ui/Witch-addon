@@ -46,6 +46,10 @@ public class WitchAddon extends MeteorAddon {
         m.add(new ToggleSneak());
         m.add(new Spinner());
         m.add(new HotbarCycle());
+        m.add(new HitMarker());
+        m.add(new DamageIndicator());
+        m.add(new SoundEsp());
+        m.add(new DeathMarker());
 
         Hud hud = Hud.get();
         hud.register(WitchHud.WATERMARK);
