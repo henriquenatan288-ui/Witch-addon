@@ -12,8 +12,8 @@ public class AddonGametest implements FabricClientGameTest {
         context.takeScreenshot("a0-title");
         // animacao de entrada, chamada de forma deterministica
         context.runOnClient(mc -> TestHooks.playIntro());
-        for (int i = 1; i <= 14; i++) {
-            context.waitTicks(4);
+        for (int i = 1; i <= 24; i++) {
+            context.waitTicks(5);
             context.takeScreenshot("a" + (i < 10 ? "0" : "") + i + "-intro");
         }
         context.waitTicks(40);
