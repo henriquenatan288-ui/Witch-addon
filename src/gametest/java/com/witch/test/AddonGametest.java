@@ -56,8 +56,10 @@ public class AddonGametest implements FabricClientGameTest {
                 TestHooks.toggle("sound-esp");
                 TestHooks.toggle("death-marker");
             });
+            System.out.println("TEST-STEP zumbi");
             sp.getServer().runCommand("summon minecraft:zombie ~ ~ ~5 {NoAI:1b,PersistenceRequired:1b}");
             context.waitTicks(20);
+            System.out.println("TEST-STEP dano");
             sp.getServer().runCommand("damage @e[type=zombie,limit=1] 6");
             sp.getServer().runCommand("playsound minecraft:block.chest.open block @a ~3 ~ ~4 1 1");
             context.runOnClient(mc -> TestHooks.attackZombie());
@@ -68,8 +70,10 @@ public class AddonGametest implements FabricClientGameTest {
             // morte: vai para 15 blocos ao norte, morre, renasce olhando para la
             sp.getServer().runCommand("tp @p ~ ~ ~-15");
             context.waitTicks(10);
+            System.out.println("TEST-STEP morte");
             sp.getServer().runCommand("kill @p");
             context.waitTicks(20);
+            System.out.println("TEST-STEP respawn");
             context.runOnClient(mc -> TestHooks.respawn());
             context.waitTicks(40);
             sp.getServer().runCommand("tp @p ~ ~ ~ 180 0");

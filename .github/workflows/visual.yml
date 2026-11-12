@@ -30,7 +30,7 @@ jobs:
         run: |
           set -o pipefail
           chmod +x gradlew
-          xvfb-run -a -s "-screen 0 1280x720x24" ./gradlew runClientGametest --stacktrace --console=plain 2>&1 | tee visual.log || true
+          timeout 420 xvfb-run -a -s "-screen 0 1280x720x24" ./gradlew runClientGametest --stacktrace --console=plain 2>&1 | tee visual.log || true
           mkdir -p out
           find . -path ./out -prune -o -name "*.png" -path "*screenshots*" -exec cp {} out/ \; || true
           tail -1500 visual.log > out/visual-tail.log
